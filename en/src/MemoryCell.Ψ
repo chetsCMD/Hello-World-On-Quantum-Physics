@@ -1,0 +1,12 @@
+// A memory cell as a barrier: an electron tunnels through a SiO₂ layer (WKB)
+class MemoryCell {
+    field V : J  = 3.1·eV          // Si/SiO₂ barrier height
+    field m : kg = 0.5·mₑ          // effective electron mass
+    field d : m  = 5e-9            // barrier thickness
+
+    method κ()  → 1/m := √(2·m·V) / ħ
+    method T()  → probability := exp(−2·κ·d)         // ≈ 1.99e-28
+    method ν()  → Hz := V / h                         // attempt frequency ≈ 7.50e14
+    // Tunneling rate per bit
+    method r()  → 1/s := ν · T                        // ≈ 1.49e-13
+}

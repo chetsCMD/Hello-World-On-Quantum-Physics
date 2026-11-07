@@ -1,0 +1,8 @@
+// Energy limit on computation speed
+class Hamiltonian {
+    field m : kg = 1                                 // mass of the "ultimate" computer
+    method E()     → J := m · c²                     // ≈ 8.99e16
+    // Margolus–Levitin theorem: maximum orthogonal transitions per second
+    method Γ_max() → 1/s := 2·E / (π·ħ)              // ≈ 5.43e50
+    method log10_Γ() → number := log₁₀(Γ_max)        // 50.734
+}

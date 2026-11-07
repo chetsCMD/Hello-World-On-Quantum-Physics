@@ -1,0 +1,7 @@
+// Timescale: age of the Universe and the probability of success within it
+class UniverseTimeline {
+    field U : s = 4.35e17                          // ≈ 1.38e10 years
+    method log10_U() → number := log₁₀(U)          // 17.64
+    // For T ≫ U the probability of success ≈ U / T
+    method P_in_lifetime(log10_T : number) → number := log10_U − log10_T
+}

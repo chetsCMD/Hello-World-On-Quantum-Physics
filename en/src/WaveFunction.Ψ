@@ -1,0 +1,12 @@
+// Memory state as a vector in a space of dimension 2^N
+class WaveFunction {
+    field N  : bits
+    field c  : vector[2^N]               // amplitudes c_x
+
+    // Normalization
+    method norm() → number := Σₓ |c_x|² = 1
+    // Born rule: probability of finding memory in state |H⟩
+    method P(H : ProgramImage) → probability := |⟨H|Ψ⟩|²
+    // Uniform (maximally mixed) initial superposition
+    method uniform(N) → WaveFunction := { c_x = 2^(−N/2) }
+}

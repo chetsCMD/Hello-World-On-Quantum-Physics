@@ -1,0 +1,7 @@
+// DRAM soft errors (SER) from cosmic rays and alpha particles
+class CosmicRaySource {
+    field SER : 1/(bit·hour) = 1e-12     // ~1000 FIT/Mbit
+    field Δt  : s = 0.064                 // DRAM refresh period
+
+    method r() → 1/s := SER / 3600        // ≈ 2.78e-16
+}

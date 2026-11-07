@@ -1,0 +1,12 @@
+// Fundamental constants (CODATA 2018)
+class FundamentalConstants {
+    constant ħ    : J·s  = 1.054571817e-34
+    constant h    : J·s  = 2π·ħ
+    constant c    : m/s  = 299792458
+    constant mₑ   : kg   = 9.1093837015e-31
+    constant eV   : J    = 1.602176634e-19
+    constant k_B  : J/K  = 1.380649e-23
+    constant year : s    = 3.15576e7
+
+    method log10_year() → number := log₁₀(year)
+}

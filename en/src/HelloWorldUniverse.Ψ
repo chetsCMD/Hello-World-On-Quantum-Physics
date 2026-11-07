@@ -1,0 +1,20 @@
+// ENTRY POINT. Computes how long to wait until the computer writes "Hello, World" by itself.
+class HelloWorldUniverse {
+    field image    : ProgramImage         = ProgramImage.minimal_ELF()
+    field estimate : WaitingTimeEstimator = { image = image }
+    field timeline : UniverseTimeline
+    field Ψ        : WaveFunction         = WaveFunction.uniform(image.N)
+    field collapse : CollapseOperator     = { observer = Observer }
+
+    method run() := {
+        1. P := image.P()                                      // 2^−1024 ≈ 5.6e-309
+        2. T_A, T_B, T_C := estimate.log10_T_A, T_B, T_C       // 257.5, 11165.8, 8574.9 (s)
+        3. lifetime_probability := timeline.P_in_lifetime(T_A) // ≈ 10^−239.9
+        4. wait(T_A)                                           // ≈ 10^250 years
+        5. when |H⟩ appears in memory → the processor executes the image
+        6. collapse.collapse(Ψ)                                // pixels fix within ≈ 1.5e-20 s
+        7. output := "Hello, World"
+    }
+
+    method wait(log10_T) := patience
+}

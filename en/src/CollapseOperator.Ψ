@@ -1,0 +1,14 @@
+// Wave function collapse at the moment the string is output to the screen
+class CollapseOperator {
+    field output : |Hello, World⟩        // pixel configuration of the string
+    field observer : Observer
+
+    // Projection operator for the measurement "the screen shows Hello, World"
+    method P̂() → operator := |Hello, World⟩⟨Hello, World|
+    // Outcome probability by the Born rule
+    method probability(Ψ : WaveFunction) → probability := ⟨Ψ| P̂ |Ψ⟩
+    // Collapse: the state after measurement
+    method collapse(Ψ : WaveFunction) → WaveFunction := P̂|Ψ⟩ / √⟨Ψ|P̂|Ψ⟩
+    // The moment of collapse is set by the observer's decoherence time
+    method moment() → s := observer.τ_D
+}

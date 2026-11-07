@@ -1,0 +1,24 @@
+// Three waiting-time models (all results in log₁₀ seconds)
+class WaitingTimeEstimator {
+    field image       : ProgramImage
+    field cell        : MemoryCell
+    field rays        : CosmicRaySource
+    field hamiltonian : Hamiltonian
+    field K           : number = 1        // number of allowed image positions
+
+    // n = number of wrong bits that must flip
+    method n() → bits := N / 2
+
+    // A: Margolus–Levitin limit. T = 2^N / (K·Γ_max)
+    method log10_T_A() → number := N·log₁₀(2) − log₁₀(K) − hamiltonian.log10_Γ
+
+    // B: tunneling. T = Δt / (K·(rΔt)^n), Δt = 1 ns
+    method log10_T_B() → number := −n·log₁₀(cell.r · 1e-9) + log₁₀(1e-9) − log₁₀(K)
+
+    // C: cosmic rays. T = Δt / (K·(rΔt)^n), Δt = 64 ms
+    method log10_T_C() → number := −n·log₁₀(rays.r · rays.Δt) + log₁₀(rays.Δt) − log₁₀(K)
+
+    // Convert to years
+    method in_years(log10_T_s) → number := log10_T_s − log₁₀(year)
+}
+// For L = 128: A ≈ 257.52, B ≈ 11165.8, C ≈ 8574.9  (log₁₀ seconds)

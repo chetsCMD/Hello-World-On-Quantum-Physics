@@ -1,0 +1,13 @@
+// Observer = any system that irreversibly records information (decoherence)
+class Observer {
+    field T   : K   = 300
+    field m   : kg  = mₑ
+    field Δx  : m   = 1e-6                 // scale of distinguishable pixel states
+    field τ_R : s   = 1e-14                // relaxation time
+
+    method λ_th() → m := ħ / √(2·m·k_B·T)          // ≈ 1.2e-9
+    // Decoherence time: how fast the pixel basis becomes classical
+    method τ_D() → s := τ_R · (λ_th / Δx)²         // ≈ 1.5e-20
+    // A human is not required: the screen, photons and air already observe
+    method human_required() → bool := false
+}

@@ -1,0 +1,15 @@
+// The "Hello, World" program image: the set of bits that must appear on their own
+class ProgramImage {
+    field L : B                       // image size in bytes (default 128)
+    field H : |h₁h₂…h_N⟩              // target bit configuration
+
+    method N() → bits := 8·L
+    // Pure probability of one configuration (principle of indifference)
+    method P() → probability := 2^(−N)
+    method log10_P() → number := −N · log₁₀(2)
+
+    // Presets
+    method minimal_ELF()  → ProgramImage := { L = 128 }
+    method text_only()    → ProgramImage := { L = 22  }   // print("Hello, World"), needs an interpreter
+    method extended_ELF() → ProgramImage := { L = 142 }
+}
